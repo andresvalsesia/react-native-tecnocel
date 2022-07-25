@@ -1,7 +1,8 @@
 import React, {useEffect,useState} from 'react'
-import {StyleSheet,View,Text,TouchableOpacity,FlatList,Image,Dimensions,SafeAreaView,Animated,TextInput,ImageBackground,ScrollView} from 'react-native';
-import productActions from '../redux/actions/productActions';
+import {StyleSheet,View,Text,TouchableOpacity,FlatList,Image,Dimensions,SafeAreaView,Animated,TextInput,ImageBackground,ScrollView,Alert} from 'react-native';
+import productActions from '../../redux/actions/productActions';
 import {useDispatch,useSelector} from 'react-redux';
+import { Link } from 'react-router-native';
 
 
 const width =Dimensions.get("window").width;
@@ -25,24 +26,33 @@ const Product= () => {
 }, [search])
 
 
+const addToCart = async (id) => {
+
+    await dispatch(productActions.agregarCarrito(id))
+    
+    Alert.alert("Has agregado el producto al carrito")
+  
+  };
+
+
 let products=useSelector(store=>store.productReducer.products)
-/* let data= useSelector(store=>store.cityReducer.filterCity) */
+let carrito=useSelector(store=>store.productReducer.carrito)
+/* let filter= products.filter(product=>product.name.toLowerCase().startsWith(search.trim().toLocaleLowerCase())) */
 
-
+console.log(carrito)
 
   return (
     <ImageBackground source="https://wallpapercave.com/wp/wp4568512.jpg" resizeMode="cover" style={styles.image}>
       <View style={{alignItems: 'center'}}>
-    <ScrollView >
     
+      <ScrollView >
         <TextInput
         style={styles.input}
         placeholder='SEARCH'
         onChangeText={(val)=>setSearch(val)}
-        
       />
 
-{products.length > 0 ? 
+
 
  
      <Animated.FlatList data={products}
@@ -52,7 +62,6 @@ let products=useSelector(store=>store.productReducer.products)
       decelerationRate={0}
       snapToInterval={ANCHO_CONTENEDOR}
       scrollEventThrottl={16}
-      keyExtractor={(item) => item}
       renderItem={({item,index})=>{
        return (
            <View style={{width:ANCHO_CONTENEDOR}}>
@@ -79,11 +88,16 @@ let products=useSelector(store=>store.productReducer.products)
                      marginBottom:8,
            }}
              >
+              <Link to={`/productDetails/${item._id}`}>
               <Text style={{fontSize:25,textAlign: 'center',color: 'white',fontWeight: 'bold'}}>
                       VER MAS
               </Text>
+              </Link>
                
               
+             </TouchableOpacity>
+             <TouchableOpacity onPress={()=>addToCart(item._id)}>
+              <Text style={{fontSize:55,textAlign: 'center',color: 'white',fontWeight: 'bold',marginTop:5}}>🛒</Text>
              </TouchableOpacity>
    
             </View>
@@ -92,59 +106,7 @@ let products=useSelector(store=>store.productReducer.products)
        )
       }}
       />
-     : 
-    
      
-      
-     <Animated.FlatList data={products}
-      
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{paddingTop:5}}
-      decelerationRate={0}
-      snapToInterval={ANCHO_CONTENEDOR}
-      scrollEventThrottl={16}
-      keyExtractor={(item) => item}
-      renderItem={({item,index})=>{
-       return (
-           <View style={{width:ANCHO_CONTENEDOR}}>
-
-            
-            <View key={index}
-            style={styles.card}
-            >
-     
-                     
-                     <Image  source={{uri:item.images}} style={styles.imgStore}/>
-                     <Text style={styles.titulo}>{item.name}</Text>
-                     <Text style={styles.direccion}> USD {item.price}</Text>
-                     <TouchableOpacity
-                  
-             style={{backgroundColor:'grey',
-                     padding:5,
-                     marginTop: "1%",
-                     width:"60%",
-                     alignSelf:"center",
-                     borderRadius:35,
-                     borderColor:'black',
-                     borderWidth:2,
-                     marginBottom:8,
-           }}
-             >
-              <Text style={{fontSize:25,textAlign: 'center',color: 'white',fontWeight: 'bold'}}>
-                      VER MAS
-              </Text>
-               
-              
-             </TouchableOpacity>
-   
-            </View>
-           </View>
-       )
-      }}
-      />   
-     
-    }
-  
     </ScrollView>
     </View>  
     </ImageBackground> 
