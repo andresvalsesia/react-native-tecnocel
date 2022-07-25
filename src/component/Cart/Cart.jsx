@@ -6,11 +6,10 @@ import productActions from '../../redux/actions/productActions';
 import { Link } from "react-router-native";
 // import AddIcon from '@mui/icons-material/Add';
 // import RemoveIcon from '@mui/icons-material/Remove';
-// import DeleteIcon from '@mui/icons-material/Delete';
 import logo from '../../../assets/Tecnocel.png';
 import EmptyCart from "./EmptyCart";
 import { Button, Image, ImageBackground, StyleSheet, Text, View } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
 const Cart = () => {
@@ -64,7 +63,7 @@ console.log(carrito.length)
     <View className="logo-linkdiv">
       <View className="logo-link">
         <Link className="link-inicio" to="/"><Text>Ir al Inicio</Text></Link>
-        <Image source={logo} alt="logo" height={150}></Image>
+        <Image source={logo} alt="logo" style={{height: 10, width: 10}}></Image>
       </View>
     </View>
        
@@ -96,19 +95,19 @@ console.log(carrito.length)
                     </View>
                     <Text style={{fontWeight: "bold", fontSize: "16px"}}>$ {item.price}</Text>
                     <View className="cantidad">
-                  <Button title="hola" className="button-cart" onClick={()=>removeToCart(item._id)}> <Icon name="remove" style={{color: "#88D317", cursor: "pointer", fontSize: "2.3rem"}}/></Button>
+                  <Button title="hola" className="button-cart" onClick={()=>removeToCart(item._id)}> <Icon name="remove" style={{color: "#88D317", cursor: "pointer", fontSize: 23}}/></Button>
                     <Text style={{fontWeight: "bold"}}>{item.__v}</Text>
-                   <Button title="hola" className="button-cart" onClick={()=>addToCart(item._id)}><Icon name="add" style={{color: "#88D317", cursor: "pointer", fontSize: "2.3rem"}}/></Button>
+                   <Button title="hola" className="button-cart" onClick={()=>addToCart(item._id)}><Icon name="add" style={{color: "#88D317", cursor: "pointer", fontSize: 23}}/></Button>
                     </View>
                     <Text>$ {item.price*item.__v}</Text>
-                 <Button title="hola" className="button-cart" onClick={()=>removeToCart(item._id,true)}><Icon name="delete" style={{color: "#88D317", cursor: "pointer", fontSize: "2.3rem"}} /></Button>
+                 <Button title="hola" className="button-cart" onClick={()=>removeToCart(item._id,true)}><Icon name="remove" style={{color: "#88D317", cursor: "pointer", fontSize: 23}} /></Button>
                   </View>
                 
                 
                 ):<EmptyCart/>}
 
 
-                <Button title="hola" onClick={clearCart} className="vaciar-carrito" style={carrito.length !== 0 ? { display:'flex', backgroundColor: 'transparent', border: 'none', justifyContent: 'center'} : {display : 'none'}}> <Icon name="delete" style={{color: "#88D317", cursor: "pointer", fontSize: "2.3rem"}} />Vaciar Carrito</Button>
+                <Button title="hola" onClick={clearCart} className="vaciar-carrito" style={carrito.length !== 0 ? { display:'flex', backgroundColor: 'transparent', border: 'none', justifyContent: 'center'} : {display : 'none'}}> <Icon name="remove" style={{color: "#88D317", cursor: "pointer", fontSize: 23}} /><Text>Vaciar Carrito</Text></Button>
             </View>
             <View className="box-resumen" style={carrito.length !== 0 ? { display:'block'} : {display : 'none'}}>
               <Text>Resumen de compra</Text>

@@ -10,7 +10,7 @@ const Index = () => {
         <Routes>
             <Route exact path="/product" element={<Product/>}/>
             <Route exact path="/" element={<Cart/>}/>
-            <Route exact path="/productDetails/:id" element={<ProductDetails/>}/>
+            {/* <Route exact path="/productDetails/:id" element={<ProductDetails/>}/> */}
           {/* <Route path="/" element={<Home />} />
           {user && user.role=="admin" &&  <Route path="/admin" element={<Admin/>}/>}
           <Route path="/cart" element={<Cart props={carrito}/>}/>
