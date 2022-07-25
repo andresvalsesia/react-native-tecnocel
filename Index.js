@@ -5,6 +5,7 @@ import Product from './src/component/product/Product';
 import Cart from './src/component/Cart/Cart'
 import ProductDetails from './src/component/product/ProductDetails'
 
+
 const Index = () => {
   return (
     <View style={styles.container}>
