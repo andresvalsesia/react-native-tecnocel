@@ -7,8 +7,8 @@ import ProductDetails from './src/component/product/ProductDetails'
 
 const Index = () => {
   return (
-    <View style={styles.container}>
-        <Routes>
+    <View>
+      <Routes>
             <Route exact path="/" element={<Product/>}/>
             <Route exact path="/cart" element={<Cart/>}/>
             <Route exact path="/productDetails/:id" element={<ProductDetails/>}/>
@@ -27,17 +27,3 @@ const Index = () => {
 }
 
 export default Index
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-      textAlign: 'center',
-    },
-    text:{
-       fontSize:30,
-       fontWeight: 'bold'
-    }
-  });

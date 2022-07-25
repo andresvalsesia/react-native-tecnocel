@@ -60,7 +60,7 @@ const addToCart = async (id) => {
               borderRadius:35,
               borderColor:'black',
               borderWidth:2,
-              marginBottom:8,}} to="/">  
+              marginBottom:8,}} to="/cart">  
         <Text style={{fontSize:25,textAlign: 'center',color: 'white',fontWeight: 'bold'}}>Volver Atras</Text>
       </Link>
     </ScrollView>

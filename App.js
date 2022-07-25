@@ -1,5 +1,4 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native';
 import {Provider} from 'react-redux';
 import {configureStore as createStore} from '@reduxjs/toolkit';
 import mainReducer from './src/redux/reducers/mainReducer';
@@ -21,17 +20,3 @@ export default function App() {
  
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
-  },
-  text:{
-     fontSize:30,
-     fontWeight: 'bold'
-  }
-});

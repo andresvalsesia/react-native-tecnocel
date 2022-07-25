@@ -42,7 +42,7 @@ let carrito=useSelector(store=>store.productReducer.carrito)
 console.log(carrito)
 
   return (
-    <ImageBackground source="https://wallpapercave.com/wp/wp4568512.jpg" resizeMode="cover" style={styles.image}>
+    <ImageBackground source={{uri: "https://wallpapercave.com/wp/wp4568512.jpg"}} resizeMode="cover" style={styles.image}>
       <View style={{alignItems: 'center'}}>
     
       <ScrollView >
@@ -89,7 +89,7 @@ console.log(carrito)
            }}
              >
               <Link to={`/productDetails/${item._id}`}>
-              <Text style={{fontSize:25,textAlign: 'center',color: 'white',fontWeight: 'bold'}}>
+              <Text style={{fontSize:22,textAlign: 'center',color: 'white',fontWeight: 'bold', marginBottom: 10}}>
                       VER MAS
               </Text>
               </Link>
@@ -97,7 +97,7 @@ console.log(carrito)
               
              </TouchableOpacity>
              <TouchableOpacity onPress={()=>addToCart(item._id)}>
-              <Text style={{fontSize:55,textAlign: 'center',color: 'white',fontWeight: 'bold',marginTop:5}}>🛒</Text>
+              <Text style={{fontSize:55,textAlign: 'center',color: 'white',fontWeight: 'bold',marginTop:5, marginBottom: 20}}>🛒</Text>
              </TouchableOpacity>
    
             </View>
@@ -151,7 +151,7 @@ const styles=StyleSheet.create({
     },
     titulo:{
       color: "white",
-      fontSize: 42,
+      fontSize: 22,
       lineHeight: 84,
       fontWeight: "bold",
       textAlign: "center",
@@ -159,7 +159,7 @@ const styles=StyleSheet.create({
     },
     direccion:{
       color: "white",
-      fontSize: 42,
+      fontSize: 22,
       lineHeight: 84,
       fontWeight: "bold",
       textAlign: "center",
