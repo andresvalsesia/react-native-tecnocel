@@ -1,10 +1,10 @@
 import React from 'react'
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import {Provider} from 'react-redux';
 import {configureStore as createStore} from '@reduxjs/toolkit';
 import mainReducer from './src/redux/reducers/mainReducer';
-import Product from './src/component/Product';
+import { NativeRouter} from 'react-router-native';
+import Index from './Index';
 /* import{NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'; */
 
@@ -14,10 +14,9 @@ export default function App() {
   return (
 
     <Provider store={reduxStore}>
-    <View style={styles.container}>
-      <Product/>
-      <StatusBar style="auto" />
-    </View>
+    <NativeRouter>
+      <Index/>
+    </NativeRouter>
     </Provider>
  
   );
