@@ -1,16 +1,17 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Route, Routes } from 'react-router-native'
-import Product from './src/component/Product';
+import Product from './src/component/product/Product';
 import Cart from './src/component/Cart/Cart'
+import ProductDetails from './src/component/product/ProductDetails'
 
 const Index = () => {
   return (
     <View style={styles.container}>
         <Routes>
-            <Route exact path="/product" element={<Product/>}/>
-            <Route exact path="/" element={<Cart/>}/>
-            {/* <Route exact path="/productDetails/:id" element={<ProductDetails/>}/> */}
+            <Route exact path="/" element={<Product/>}/>
+            <Route exact path="/cart" element={<Cart/>}/>
+            <Route exact path="/productDetails/:id" element={<ProductDetails/>}/>
           {/* <Route path="/" element={<Home />} />
           {user && user.role=="admin" &&  <Route path="/admin" element={<Admin/>}/>}
           <Route path="/cart" element={<Cart props={carrito}/>}/>

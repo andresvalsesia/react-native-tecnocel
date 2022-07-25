@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
-import {StyleSheet,View,Text,TouchableOpacity,FlatList,Image,Dimensions,SafeAreaView,Animated,TextInput,ImageBackground,ScrollView} from 'react-native';
+import {StyleSheet,View,Text,TouchableOpacity,FlatList,Image,Dimensions,SafeAreaView,Animated,TextInput,ImageBackground,ScrollView, Alert} from 'react-native';
 import productActions from '../../redux/actions/productActions';
 
 import {useDispatch,useSelector} from 'react-redux';
-import {useParams} from 'react-router-native';
+import {Link, useParams} from 'react-router-native';
 
 const width =Dimensions.get("window").width;
 const height=Dimensions.get("window").height;
@@ -52,7 +52,17 @@ const addToCart = async (id) => {
       <TouchableOpacity onPress={()=>addToCart(product._id)}>
               <Text style={{fontSize:55,textAlign: 'center',color: 'white',fontWeight: 'bold',marginTop:5}}>🛒</Text>
       </TouchableOpacity>
-  
+      <Link  style={{backgroundColor:'grey',
+              padding:5,
+              marginTop: "1%",
+              width:"60%",
+              alignSelf:"center",
+              borderRadius:35,
+              borderColor:'black',
+              borderWidth:2,
+              marginBottom:8,}} to="/">  
+        <Text style={{fontSize:25,textAlign: 'center',color: 'white',fontWeight: 'bold'}}>Volver Atras</Text>
+      </Link>
     </ScrollView>
    
   )
