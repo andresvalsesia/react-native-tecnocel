@@ -10,13 +10,13 @@ const Index = () => {
         <Routes>
             <Route exact path="/product" element={<Product/>}/>
             <Route exact path="/" element={<Cart/>}/>
+            <Route exact path="/productDetails/:id" element={<ProductDetails/>}/>
           {/* <Route path="/" element={<Home />} />
           {user && user.role=="admin" &&  <Route path="/admin" element={<Admin/>}/>}
           <Route path="/cart" element={<Cart props={carrito}/>}/>
           <Route path="/login" element={<LoginSignUp />} />
           <Route path="/about" element={<About />} />
           <Route path="/product/:id" element={<EditarProduct />} />
-          <Route path="/productDetails/:id" element={<ProductDetails />} />
           <Route path="/politicas" element={<Politicas />} />
           <Route path="/products" element={<Products />} />
           <Route path="/contact" element={<Contact />} /> */}

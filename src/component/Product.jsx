@@ -89,9 +89,11 @@ console.log(carrito)
                      marginBottom:8,
            }}
              >
+              <Link to={`/productDetails/${item._id}`}>
               <Text style={{fontSize:25,textAlign: 'center',color: 'white',fontWeight: 'bold'}}>
                       VER MAS
               </Text>
+              </Link>
                
               
              </TouchableOpacity>
