@@ -2,7 +2,6 @@ import React, {useEffect,useState} from 'react'
 import {StyleSheet,View,Text,TouchableOpacity,FlatList,Image,Dimensions,SafeAreaView,Animated,TextInput,ImageBackground,ScrollView,Alert} from 'react-native';
 import productActions from '../../redux/actions/productActions';
 import {useDispatch,useSelector} from 'react-redux';
-import { Link } from 'react-router-native';
 
 
 const width =Dimensions.get("window").width;
@@ -44,12 +43,13 @@ console.log(carrito)
   return (
     <ImageBackground source="https://wallpapercave.com/wp/wp4568512.jpg" resizeMode="cover" style={styles.image}>
       <View style={{alignItems: 'center'}}>
+    <ScrollView >
     
-      <ScrollView >
         <TextInput
         style={styles.input}
         placeholder='SEARCH'
         onChangeText={(val)=>setSearch(val)}
+        
       />
 
 
@@ -62,6 +62,7 @@ console.log(carrito)
       decelerationRate={0}
       snapToInterval={ANCHO_CONTENEDOR}
       scrollEventThrottl={16}
+      keyExtractor={(item) => item}
       renderItem={({item,index})=>{
        return (
            <View style={{width:ANCHO_CONTENEDOR}}>
@@ -88,11 +89,9 @@ console.log(carrito)
                      marginBottom:8,
            }}
              >
-              <Link to={`/productDetails/${item._id}`}>
               <Text style={{fontSize:25,textAlign: 'center',color: 'white',fontWeight: 'bold'}}>
                       VER MAS
               </Text>
-              </Link>
                
               
              </TouchableOpacity>

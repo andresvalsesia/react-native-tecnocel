@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import {Provider} from 'react-redux';
 import {configureStore as createStore} from '@reduxjs/toolkit';
+
 import mainReducer from './src/redux/reducers/mainReducer';
 import { NativeRouter} from 'react-router-native';
 import Index from './Index';
@@ -16,6 +17,7 @@ export default function App() {
     <Provider store={reduxStore}>
     <NativeRouter>
       <Index/>
+     
     </NativeRouter>
     </Provider>
  
