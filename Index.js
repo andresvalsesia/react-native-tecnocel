@@ -3,14 +3,14 @@ import { StyleSheet, View } from 'react-native'
 import { Route, Routes } from 'react-router-native'
 import Product from './src/component/product/Product';
 import Cart from './src/component/Cart/Cart'
-import Navbar from './src/component/Navbar/Navbar';
+
 
 const Index = () => {
   return (
     <View style={styles.container}>
         <Routes>
-            <Route exact path="/product" element={<Product/>}/>
-            <Route exact path="/" element={<Cart/>}/>
+            <Route exact path="/" element={<Product/>}/>
+            <Route exact path="/product" element={<Cart/>}/>
           {/* <Route path="/" element={<Home />} />
           {user && user.role=="admin" &&  <Route path="/admin" element={<Admin/>}/>}
           <Route path="/cart" element={<Cart props={carrito}/>}/>
@@ -22,7 +22,7 @@ const Index = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/contact" element={<Contact />} /> */}
       </Routes>
-    <Navbar/>
+   
     </View>
   )
 }

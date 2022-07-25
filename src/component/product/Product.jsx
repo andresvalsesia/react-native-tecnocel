@@ -36,9 +36,9 @@ const addToCart = async (id) => {
 
 let products=useSelector(store=>store.productReducer.products)
 let carrito=useSelector(store=>store.productReducer.carrito)
-/* let filter= products.filter(product=>product.name.toLowerCase().startsWith(search.trim().toLocaleLowerCase())) */
+let filter= products.filter(product=>product.name.toLowerCase().startsWith(search.trim().toLocaleLowerCase()))
 
-console.log(carrito)
+
 
   return (
     <ImageBackground source="https://wallpapercave.com/wp/wp4568512.jpg" resizeMode="cover" style={styles.image}>
@@ -54,15 +54,15 @@ console.log(carrito)
 
 
 
- 
-     <Animated.FlatList data={products}
+      {search=="" ?
+      <Animated.FlatList data={products}
       
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{paddingTop:5}}
       decelerationRate={0}
       snapToInterval={ANCHO_CONTENEDOR}
       scrollEventThrottl={16}
-      keyExtractor={(item) => item}
+      keyExtractor={(item) => item._id}
       renderItem={({item,index})=>{
        return (
            <View style={{width:ANCHO_CONTENEDOR}}>
@@ -104,7 +104,60 @@ console.log(carrito)
            </View>
        )
       }}
-      />
+      />: <>{filter.length>0 ? <Animated.FlatList data={filter}
+      
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={{paddingTop:5}}
+      decelerationRate={0}
+      snapToInterval={ANCHO_CONTENEDOR}
+      scrollEventThrottl={16}
+      keyExtractor={(item) => item._id}
+      renderItem={({item,index})=>{
+       return (
+           <View style={{width:ANCHO_CONTENEDOR}}>
+
+            
+            <View 
+            style={styles.card}
+            >
+     
+                     
+                     <Image key={index} source={{uri:item.images}} style={styles.imgStore}/>
+                     <Text style={styles.titulo}>{item.name}</Text>
+                     <Text style={styles.direccion}>USD {item.price}</Text>
+                     <TouchableOpacity
+                      
+             style={{backgroundColor:'grey',
+                     padding:5,
+                     marginTop: "1%",
+                     width:"60%",
+                     alignSelf:"center",
+                     borderRadius:35,
+                     borderColor:'black',
+                     borderWidth:2,
+                     marginBottom:8,
+           }}
+             >
+              <Text style={{fontSize:25,textAlign: 'center',color: 'white',fontWeight: 'bold'}}>
+                      VER MAS
+              </Text>
+               
+              
+             </TouchableOpacity>
+             <TouchableOpacity onPress={()=>addToCart(item._id)}>
+              <Text style={{fontSize:55,textAlign: 'center',color: 'white',fontWeight: 'bold',marginTop:5}}>🛒</Text>
+             </TouchableOpacity>
+   
+            </View>
+            
+           </View>
+       )
+      }}
+      />: <Image source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwIINkhc-KAM5-1xl2cP2gQGB5Qh9kZte4Qs9WH24gcLWF35LSf4XIaqCt9t6m15r5kyA&usqp=CAU"}} style={styles.imgStore}/> }</>  }
+                     
+ 
+                 
+     
      
     </ScrollView>
     </View>  
