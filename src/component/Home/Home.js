@@ -1,4 +1,5 @@
 import { StyleSheet, Text, ScrollView, View, Pressable, ImageBackground, Dimensions } from 'react-native'
+import { Link } from 'react-router-native';
 import Courosel from './carousel'
 
 
@@ -14,9 +15,9 @@ export default function Home() {
                     <Text style={styles.title}>TECNOCEL</Text>
                     <Text style={styles.subtitle}>Las mejores marcas estan en TECNOCEL</Text>
                     <Text style={styles.subtitle}>Eleje tu notebook ideal para trabajar o jugar!</Text>
-                    <Pressable onPress={() => navigation.navigate('Cities')} style={styles.linkHero} >
+                    <Link to="/products" style={styles.linkHero} >
                         <Text style={[styles.linkText, styles.subtitle]}>Ver Productos</Text>
-                    </Pressable>
+                    </Link>
                 </View>
 
             </ImageBackground>
@@ -30,7 +31,7 @@ export default function Home() {
 //styles
 const styles = StyleSheet.create({
     home: {
-        flex: 1,
+        display: 'flex',
         flexDirection: 'column',
         width: "100%",
         backgroundColor: 'rgba(130, 77, 52, 0.4)'
