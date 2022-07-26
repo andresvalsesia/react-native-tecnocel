@@ -55,6 +55,7 @@ console.log(carrito.length)
 
 
   return (
+    <ScrollView>
     <ImageBackground source={{uri: "https://besthqwallpapers.com/Uploads/20-8-2019/102143/thumb2-black-stylish-background-green-neon-lines-green-light-effects-abstract-black-background.jpg"}} style={styles.contenedor}>
     <View style={styles.logoLinkdiv}>
       <View style={styles.logoLink}>
@@ -72,7 +73,6 @@ console.log(carrito.length)
        
         {/* <EmptyCart/> */}
           <Text style={styles.textEnviosGratis}> Envio gratis y 12 cuotas sin interes desde $1.000</Text>
-              <ScrollView>
           <View style={styles.boxes}>
             <View style={styles.boxProductos}>
               {carrito.length !== 0 ? carrito.map(item=>
@@ -86,7 +86,7 @@ console.log(carrito.length)
                     <Text style={{color: "white", fontWeight: 'bold', fontSize: 15}}>{item.name}</Text>
                     </View>
                     <View style={styles.precioCantidad}>
-                    <Text style={{fontWeight: "bold", color: 'white', fontSize: "16px"}}>$ {item.price}</Text>
+                    <Text style={{fontWeight: "bold", color: 'white', fontSize: 16}}>$ {item.price}</Text>
                     <View style={styles.cantidad}>
                   <Icon onPress={()=>removeToCart(item._id)} name="remove" style={{color: "#88D317", cursor: "pointer", fontSize: 23, marginRight: 20}}/>
                     <Text style={{fontWeight: "bold", color: 'white', marginRight: 20}}>{item.__v}</Text>
@@ -118,8 +118,8 @@ console.log(carrito.length)
               </View>
             </View>
           </View> 
-                </ScrollView>
           </ImageBackground>
+          </ScrollView>
       )
       
 };
@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
   contenedor: {
     height: "100%",
     width: "100%",
+    marginBottom: 150,
   },
   logoLinkdiv: {
     display: 'flex',

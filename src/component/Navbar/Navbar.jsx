@@ -23,7 +23,7 @@ export default function Navbar(){
             <Icon name="shopping-cart" color={'#88D317'} size={45}  />
             </View>
             </LinkRouter>
-            <LinkRouter to='/'>
+            <LinkRouter to='/login'>
             <View style={styles.button}>
             <Icon name="person" color={'#88D317'} size={45}  />
             </View>
