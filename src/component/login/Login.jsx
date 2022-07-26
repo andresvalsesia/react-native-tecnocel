@@ -18,34 +18,27 @@ export default function Login() {
     const user = useSelector(store => store.userReducer.user)
     let navigate = useNavigate()
 
-    console.log(message)
-    console.log(user)
-    const loginSubmit  = async (e) => {
-        e.preventDefault();
-        console.log(email)
-        console.log(password)
+    const loginSubmit  = async () => {
         const logedUser={
           
           email: email,
           password: password.password,
           from:'signup'
         }
-        
-         dispatch(userActions.signInUser(logedUser))
-         
+        console.log(logedUser)
+        await dispatch(userActions.signInUser(logedUser))
 
-
-        await Alert.alert(message?.message)
-        
-          setEmail("")
-          setPassword("")
-      };
-
-      useEffect(() => {
-        if (user) {
+        setEmail("")
+        setPassword("")
+    };
+    
+    useEffect(() => {
+        if(message.view) {
+            Alert.alert(message?.message)
             navigate("/", {replace: true})
-          }
-      },[user])
+            dispatch({type:'MESSAGE', payload: {view:false,message:"",success:false}});
+        }
+      },[message.view])
 
     return (
         <View style={styles.backgroundlogin}>

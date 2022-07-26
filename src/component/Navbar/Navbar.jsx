@@ -10,8 +10,12 @@ export default function Navbar(){
     
 
     const user = useSelector(store => store.userReducer.user)
-    const [reload, setReload] = useState("")
     const dispatch = useDispatch()
+
+    
+    const submit = async () => {
+        dispatch(userActions.signOutUser())
+    }
 
 
     return(
@@ -30,9 +34,9 @@ export default function Navbar(){
             <View style={styles.button}>
             <Icon name="shopping-cart" color={'#88D317'} size={45}  />
             </View>
-            </LinkRouter>{
-            user ?
-            <Pressable onPress={() => setReload("hola")}>
+            </LinkRouter>
+            {user ?
+            <Pressable onPress={submit}>
             <View style={styles.button}>
             <Icon name="logout" color={'#88D317'} size={45}  />
             </View>
@@ -43,7 +47,7 @@ export default function Navbar(){
             <Icon name="person" color={'#88D317'} size={45}  />
             </View>
             </LinkRouter>
-            }
+            } 
         </View>
     )
 

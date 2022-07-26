@@ -27,6 +27,12 @@ const userReducer = (state=initialState,action)=>{
                     snackbar:{view:action.payload.view,message:action.payload.message,success:action.payload.success},
                     user: action.payload.response 
                 }
+         case 'SIGN_OUT':
+                return {
+                    ...state,
+                    snackbar: initialState.snackbar,
+                    user: action.payload
+                }
                
         default:
             return state;

@@ -24,9 +24,6 @@ export default function Register() {
 
     const registerSubmit  = async (e) => {
         e.preventDefault();
-        console.log(email)
-        console.log(password)
-        console.log(name)
         const logedUser={
 
           name: name.name,
@@ -35,17 +32,20 @@ export default function Register() {
           from:'signup'
         }
         
-          const res = dispatch(userActions.signUpUserMessage(logedUser))
-        await Alert.alert(message?.message)
+        dispatch(userActions.signUpUserMessage(logedUser))
 
           setEmail("")
           setPassword("")
           setName("")
-
-          if (res.data.success) {
-            navigate("/login", {replace: true})
-          }
       };
+
+      useEffect(() => {
+        if(message.view) {
+            Alert.alert(message?.message)
+            navigate("/", {replace: true})
+            dispatch({type:'MESSAGE', payload: {view:false,message:"",success:false}});
+        }
+      },[message.view])
 
     return (
         <View style={styles.backgroundlogin}>
