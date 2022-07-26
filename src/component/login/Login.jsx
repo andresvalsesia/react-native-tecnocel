@@ -11,7 +11,7 @@ export default function Login() {
     return (
         <View style={styles.backgroundlogin}>
             <TextInput  placeholder="email" required style={[styles.input, styles.inputtext]} />
-            <TextInput type="password" placeholder="Contraseña" required style={[styles.input, styles.inputtext]} />
+            <TextInput secureTextEntry={true} type="password" placeholder="Contraseña" required style={[styles.input, styles.inputtext]} />
             <Pressable  style={styles.buttoncontainer} >
                 <Text style={[styles.buttonlogin]}>LOGIN</Text>
             </Pressable>
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         maxWidth: '100%',
         flexDirection: 'column',
         textAlign: 'center',
-        marginTop: 10,
+        marginTop: 50,
         marginBottom: 10,
         color: 'black',
         backgroundColor: 'grey',
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     backgroundlogin: {
         backgroundColor: 'rgba(0, 0, 0, 0.854)',
         width: '100%',
+        height: "100%"
        
     },
     buttoncontainer: {

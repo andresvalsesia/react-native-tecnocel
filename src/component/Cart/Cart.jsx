@@ -56,30 +56,17 @@ console.log(carrito.length)
 
   return (
     <ScrollView>
-    <ImageBackground source={{uri: "https://besthqwallpapers.com/Uploads/20-8-2019/102143/thumb2-black-stylish-background-green-neon-lines-green-light-effects-abstract-black-background.jpg"}} style={styles.contenedor}>
+    <ImageBackground source={{uri: "https://besthqwallpapers.com/Uploads/20-8-2019/102143/thumb2-black-stylish-background-green-neon-lines-green-light-effects-abstract-black-background.jpg"}} style={carrito.length !== 0 ? { marginBottom: 150, height: "100%", width: "100%"} : {marginBottom: 400, height: "100%", width: "100%"}} >
     <View style={styles.logoLinkdiv}>
       <View style={styles.logoLink}>
         <Link to="/"><Text style={{color: '#88D317', fontSize: 20}}>Ir al Inicio</Text></Link>
         <Image source={logo} alt="logo" style={{height: 115, width: 135}}></Image>
       </View>
     </View>
-       
-       {/*  <div className="emptyCart">
-          <RemoveShoppingCartIcon />
-          <Typography>No Items In Cart</Typography>
-          <Link to="/products">View Products</Link>
-          <BottomTab />
-        </div> */}
-       
-        {/* <EmptyCart/> */}
           <Text style={styles.textEnviosGratis}> Envio gratis y 12 cuotas sin interes desde $1.000</Text>
           <View style={styles.boxes}>
             <View style={styles.boxProductos}>
               {carrito.length !== 0 ? carrito.map(item=>
-              
-              
-
-                
                 <View key={item.name} style={styles.productos}>
                     <View style={styles.imgText}>
                     <Image source={{uri: item.images}} alt="image" style={{height: 100, width: 100}}></Image>
@@ -95,25 +82,20 @@ console.log(carrito.length)
                   <Icon onPress={()=>removeToCart(item._id,true)} name="delete" style={{color: "#88D317", cursor: "pointer", fontSize: 23}} />
                   </View>
                   </View>
-                
-                
                 ):<EmptyCart/>}
 
                <View style={styles.vaciar}>
-              
                <Icon name="delete" onPress={clearCart}  style={carrito.length ? { display:'flex', backgroundColor: 'transparent', marginRight: 10, border: 'none', justifyContent: 'center', color: "#88D317", cursor: "pointer", fontSize: 25} : {display : 'none'}} />
                <Text style={carrito.length ? { display:'flex', backgroundColor: 'transparent', justifyContent: 'center', color: "white", fontWeight: 'bold'} : {display : 'none'}}>Vaciar Carrito </Text>
                </View>
             </View>
-            <View  style={carrito.length !== 0 ? { display:'flex', padding: 10, marginHorizontal: 30, marginTop: 30, backgroundColor: "#181818", shadowColor: "#88D317", justifyContent: 'center', alignItems: 'center', shadowOffset: { width: -5/10, height: -5/10 }, shadowOpacity: 10, elevation: 20, } : {display : 'none'}}>
+            <View  style={carrito.length !== 0 ? { display:'flex', padding: 10, marginBottom: 30, marginHorizontal: 30, marginTop: 30, backgroundColor: "#181818", shadowColor: "#88D317", justifyContent: 'center', alignItems: 'center', shadowOffset: { width: -5/10, height: -5/10 }, shadowOpacity: 10, elevation: 20, } : {display : 'none'}}>
               <Text style={{color: "white", fontWeight: 'bold'}}>Resumen de compra</Text>
               <View >
                 <Text style={{color: "white", fontWeight: 'bold', textAlign: 'center', marginTop: 10}}>Total:${total}</Text>
-                
                 <View color="white" style={styles.iniciarCompra}>
                 <Text style={{color: 'white'}}>Iniciar Compra</Text>
                 </View>
-
             {/*     <Paypal/> */}
               </View>
             </View>
@@ -130,7 +112,7 @@ const styles = StyleSheet.create({
   contenedor: {
     height: "100%",
     width: "100%",
-    marginBottom: 150,
+    marginBottom: 400,
   },
   logoLinkdiv: {
     display: 'flex',
@@ -178,7 +160,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginBottom: 30,
+    marginBottom: 40,
     padding: 10,
     shadowColor: "#88D317",
     shadowOffset: { width: -5/10, height: -5/10 },
