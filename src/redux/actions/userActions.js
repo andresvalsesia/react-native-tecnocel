@@ -8,6 +8,7 @@ const userActions={
 
             return async(dispatch,getState)=>{
                 const res= await axios.post(`${apiUrl}auth/register`,{userData});
+                console.log(res)
                 dispatch({type:'SIGN_UP', payload: {view:true,message:res.data.message,success:res.data.success}});
             } 
          },
@@ -17,7 +18,7 @@ const userActions={
             return async(dispatch,getState)=>{
                 const res= await axios.post(`${apiUrl}auth/login`, {logedUser});
                 if(res.data.success){
-                    localStorage.setItem('token',res.data.response.token)
+                    
                     dispatch({type:'SIGN_IN', payload:{view:true,message:res.data.message,success:res.data.success,response:res.data.response.userData}});
                 }
 

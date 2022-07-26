@@ -1,11 +1,19 @@
 import React, {useEffect,useState} from 'react'
-import { View, Text, StyleSheet, Button, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Button, ScrollView, Pressable, DevSettings } from 'react-native'
 import { IconButton } from "@react-native-material/core";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Link as LinkRouter} from 'react-router-native'
+import { useDispatch, useSelector } from 'react-redux';
+import userActions from '../../redux/actions/userActions';
 
 export default function Navbar(){
     
+
+    const user = useSelector(store => store.userReducer.user)
+    const [reload, setReload] = useState("")
+    const dispatch = useDispatch()
+
+
     return(
         <View style={styles.containerNavbar} >
             <LinkRouter to='/'> 
@@ -22,12 +30,20 @@ export default function Navbar(){
             <View style={styles.button}>
             <Icon name="shopping-cart" color={'#88D317'} size={45}  />
             </View>
-            </LinkRouter>
+            </LinkRouter>{
+            user ?
+            <Pressable onPress={() => setReload("hola")}>
+            <View style={styles.button}>
+            <Icon name="logout" color={'#88D317'} size={45}  />
+            </View>
+            </Pressable>
+             :
             <LinkRouter to='/register'>
             <View style={styles.button}>
             <Icon name="person" color={'#88D317'} size={45}  />
             </View>
             </LinkRouter>
+            }
         </View>
     )
 

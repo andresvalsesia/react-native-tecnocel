@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, TextInput, ScrollView, View, ImageBackground, Dimensions, Pressable, Text, Alert } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-native';
 import userActions from '../../redux/actions/userActions';
 
 
@@ -9,41 +10,47 @@ var { height } = Dimensions.get('window')
 export default function Login() {
 
     const [input, setInput] = useState("")
-    const [email, setEmail] = useState({email: ""});
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState({password: ""})
     const dispatch = useDispatch();
 
     const message = useSelector(store => store.userReducer.snackbar)
+    const user = useSelector(store => store.userReducer.user)
+    let navigate = useNavigate()
 
-    console.log(message.message)
-
-
-    let carrito=useSelector(store=>store.productReducer.carrito)
+    console.log(message)
+    console.log(user)
     const loginSubmit  = async (e) => {
         e.preventDefault();
         console.log(email)
         console.log(password)
         const logedUser={
           
-          email: email.email,
+          email: email,
           password: password.password,
           from:'signup'
         }
         
-          dispatch(userActions.signInUser(logedUser))
+         dispatch(userActions.signInUser(logedUser))
+         
+
 
         await Alert.alert(message?.message)
-
+        
           setEmail("")
           setPassword("")
-          
-          
       };
+
+      useEffect(() => {
+        if (user) {
+            navigate("/", {replace: true})
+          }
+      },[user])
 
     return (
         <View style={styles.backgroundlogin}>
-            <TextInput value={email.email}  type="email" placeholder="email" required style={[styles.input, styles.inputtext]} onChangeText={(text) => setEmail({...email, email: text})} />
-            <TextInput secureTextEntry={true} value={password.password} placeholder="Contraseña" required style={[styles.input, styles.inputtext]} onChangeText={(text) => setPassword({...password, password: text})} />
+            <TextInput value={email}  type="email" placeholder="email" required style={[styles.input, styles.inputtext]} onChangeText={setEmail} />
+            <TextInput secureTextEntry={true} value={password.password || ''} placeholder="Contraseña" required style={[styles.input, styles.inputtext]} onChangeText={(text) => setPassword({...password, password: text})} />
             <Pressable  style={styles.buttoncontainer} onPress={loginSubmit} >
                 <Text style={[styles.buttonlogin]}>LOGIN</Text>
             </Pressable>

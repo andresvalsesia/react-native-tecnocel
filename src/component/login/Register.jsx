@@ -1,19 +1,58 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, TextInput, ScrollView, View, ImageBackground, Dimensions, Pressable, Text } from 'react-native'
-import { Link } from 'react-router-native';
+import { StyleSheet, TextInput, ScrollView, View, ImageBackground, Dimensions, Pressable, Text, Alert } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-native';
+import userActions from '../../redux/actions/userActions';
 
 var { height } = Dimensions.get('window')
 
 export default function Register() {
-
+    
     const [input, setInput] = useState("")
+    const [email, setEmail] = useState({email: ""});
+    const [password, setPassword] = useState({password: ""})
+    const [name, setName] = useState({name: ""})
+
+    const dispatch = useDispatch();
+    let navigate = useNavigate()
+
+    const message = useSelector(store => store.userReducer.snackbar)
+
+    
+
+    
+
+    const registerSubmit  = async (e) => {
+        e.preventDefault();
+        console.log(email)
+        console.log(password)
+        console.log(name)
+        const logedUser={
+
+          name: name.name,
+          email: email.email,
+          password: password.password,
+          from:'signup'
+        }
+        
+          const res = dispatch(userActions.signUpUserMessage(logedUser))
+        await Alert.alert(message?.message)
+
+          setEmail("")
+          setPassword("")
+          setName("")
+
+          if (res.data.success) {
+            navigate("/login", {replace: true})
+          }
+      };
 
     return (
         <View style={styles.backgroundlogin}>
-            <TextInput  placeholder="name" required style={[styles.input, styles.inputtext]} />
-            <TextInput  placeholder="email" required style={[styles.input, styles.inputtext]} />
-            <TextInput secureTextEntry={true} type="password" placeholder="Contraseña" required style={[styles.input, styles.inputtext]} />
-            <Pressable  style={styles.buttoncontainer} >
+            <TextInput   value={name.name || ''} placeholder="Name" required style={[styles.input, styles.inputtext]} onChangeText={(text) => setName({...name, name: text})} />
+            <TextInput  value={email.email || ''} placeholder="Email" required style={[styles.input, styles.inputtext]} onChangeText={(text) => setEmail({...email, email: text})} />
+            <TextInput  value={password.password || ''} secureTextEntry={true} type="Password" placeholder="Contraseña" required style={[styles.input, styles.inputtext]} onChangeText={(text) => setPassword({...password, password: text})}/>
+            <Pressable  style={styles.buttoncontainer} onPress={registerSubmit} >
                 <Text style={[styles.buttonlogin]}>REGISTRARSE</Text>
             </Pressable>
             <Link to="/login"  style={styles.buttonregister} >
