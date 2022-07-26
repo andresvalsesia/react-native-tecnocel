@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     },
     backGroundhome: {
         width: '100%',
-        height: 850,
+        height: 720,
         margin: 0,
         padding: 0,
         textAlign: 'center',

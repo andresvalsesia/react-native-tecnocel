@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "black",
         justifyContent: "center",
+        height: 830
     },
     posterImage: {
         width: "100%",
