@@ -43,7 +43,7 @@ let filter= products.filter(product=>product.name.toLowerCase().startsWith(searc
 
   return (
     <ImageBackground source={{uri: "https://wallpapercave.com/wp/wp4568512.jpg"}} resizeMode="cover" style={styles.image}>
-      <View style={{alignItems: 'center'}}>
+      <View style={{alignItems: 'center', marginBottom: 200,}}>
     <ScrollView >
     
         <TextInput
