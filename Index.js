@@ -4,12 +4,13 @@ import { Route, Routes } from 'react-router-native'
 import Product from './src/component/product/Product';
 import Cart from './src/component/Cart/Cart'
 import ProductDetails from './src/component/product/ProductDetails'
+import Home from './src/component/Home/Home';
 
 const Index = () => {
   return (
     <View style={styles.container}>
         <Routes>
-            <Route exact path="/" element={<Product/>}/>
+            <Route exact path="/" element={<Home/>}/>
             <Route exact path="/cart" element={<Cart/>}/>
             <Route exact path="/productDetails/:id" element={<ProductDetails/>}/>
           {/* <Route path="/" element={<Home />} />
