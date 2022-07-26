@@ -1,15 +1,12 @@
 import React,{useState,useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import productActions from '../../redux/actions/productActions';
-// import { Typography,Button } from "@material-ui/core";
-// import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
 import { Link } from "react-router-native";
-// import AddIcon from '@mui/icons-material/Add';
-// import RemoveIcon from '@mui/icons-material/Remove';
 import logo from '../../../assets/Tecnocel.png';
 import EmptyCart from "./EmptyCart";
-import { Button, Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { Button, Image, ImageBackground, ScrollView, StyleSheet, Text, View } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { withSafeAreaInsets } from "react-native-safe-area-context";
 
 
 const Cart = () => {
@@ -59,11 +56,11 @@ console.log(carrito.length)
 
 
   return (
-    <ImageBackground source={{uri: "https://besthqwallpapers.com/Uploads/20-8-2019/102143/thumb2-black-stylish-background-green-neon-lines-green-light-effects-abstract-black-background.jpg"}} className="contenedor">
-    <View className="logo-linkdiv">
-      <View className="logo-link">
-        <Link className="link-inicio" to="/"><Text>Ir al Inicio</Text></Link>
-        <Image source={logo} alt="logo" style={{height: 10, width: 10}}></Image>
+    <ImageBackground source={{uri: "https://besthqwallpapers.com/Uploads/20-8-2019/102143/thumb2-black-stylish-background-green-neon-lines-green-light-effects-abstract-black-background.jpg"}} style={styles.contenedor}>
+    <View style={styles.logoLinkdiv}>
+      <View style={styles.logoLink}>
+        <Link to="/"><Text style={{color: '#88D317', fontSize: 20}}>Ir al Inicio</Text></Link>
+        <Image source={logo} alt="logo" style={{height: 115, width: 135}}></Image>
       </View>
     </View>
        
@@ -75,51 +72,54 @@ console.log(carrito.length)
         </div> */}
        
         {/* <EmptyCart/> */}
-          <Text className="text-envios-gratis"> Envio gratis y 12 cuotas sin interes desde $1.000</Text>
-          <View className="boxes">
-            <View className="box-productos">
-              <View className="titulo-productos" style={carrito.length !== 0 ? { display:'grid'} : {display : 'none'}}>
-              <Text>Producto</Text>
-              <Text>Precio unitario</Text>
-              <Text>Cantidad</Text>
-              <Text>Subtotal</Text>
-            </View>
+          <Text style={styles.textEnviosGratis}> Envio gratis y 12 cuotas sin interes desde $1.000</Text>
+              <ScrollView>
+          <View style={styles.boxes}>
+            <View style={styles.boxProductos}>
               {carrito.length !== 0 ? carrito.map(item=>
               
               
+
                 
-                <View key={item.name} className="productos">
-                    <View className="img-texto">
-                    <Image source={{uri: item.images}} alt="" height="90rem" width="90rem"></Image>
-                    <Text>{item.name}</Text>
+                <View key={item.name} style={styles.productos}>
+                    <View style={styles.imgText}>
+                    <Image source={{uri: item.images}} alt="image" style={{height: 100, width: 100}}></Image>
+                    <Text style={{color: "white", fontWeight: 'bold', fontSize: 15}}>{item.name}</Text>
                     </View>
-                    <Text style={{fontWeight: "bold", fontSize: "16px"}}>$ {item.price}</Text>
-                    <View className="cantidad">
-                  <Button title="hola" className="button-cart" onClick={()=>removeToCart(item._id)}> <Icon name="remove" style={{color: "#88D317", cursor: "pointer", fontSize: 23}}/></Button>
-                    <Text style={{fontWeight: "bold"}}>{item.__v}</Text>
-                   <Button title="hola" className="button-cart" onClick={()=>addToCart(item._id)}><Icon name="add" style={{color: "#88D317", cursor: "pointer", fontSize: 23}}/></Button>
+                    <View style={styles.precioCantidad}>
+                    <Text style={{fontWeight: "bold", color: 'white', fontSize: "16px"}}>$ {item.price}</Text>
+                    <View style={styles.cantidad}>
+                  <Icon onPress={()=>removeToCart(item._id)} name="remove" style={{color: "#88D317", cursor: "pointer", fontSize: 23, marginRight: 20}}/>
+                    <Text style={{fontWeight: "bold", color: 'white', marginRight: 20}}>{item.__v}</Text>
+                  <Icon onPress={()=>addToCart(item._id)} name="add" style={{color: "#88D317", cursor: "pointer", fontSize: 23}}/>
                     </View>
-                    <Text>$ {item.price*item.__v}</Text>
-                 <Button title="hola" className="button-cart" onClick={()=>removeToCart(item._id,true)}><Icon name="remove" style={{color: "#88D317", cursor: "pointer", fontSize: 23}} /></Button>
+                  <Icon onPress={()=>removeToCart(item._id,true)} name="delete" style={{color: "#88D317", cursor: "pointer", fontSize: 23}} />
+                  </View>
                   </View>
                 
                 
                 ):<EmptyCart/>}
 
-
-                <Button title="hola" onClick={clearCart} className="vaciar-carrito" style={carrito.length !== 0 ? { display:'flex', backgroundColor: 'transparent', border: 'none', justifyContent: 'center'} : {display : 'none'}}> <Icon name="remove" style={{color: "#88D317", cursor: "pointer", fontSize: 23}} /><Text>Vaciar Carrito</Text></Button>
+               <View style={styles.vaciar}>
+              
+               <Icon name="delete" onPress={clearCart}  style={carrito.length ? { display:'flex', backgroundColor: 'transparent', marginRight: 10, border: 'none', justifyContent: 'center', color: "#88D317", cursor: "pointer", fontSize: 25} : {display : 'none'}} />
+               <Text style={carrito.length ? { display:'flex', backgroundColor: 'transparent', justifyContent: 'center', color: "white", fontWeight: 'bold'} : {display : 'none'}}>Vaciar Carrito </Text>
+               </View>
             </View>
-            <View className="box-resumen" style={carrito.length !== 0 ? { display:'block'} : {display : 'none'}}>
-              <Text>Resumen de compra</Text>
-              <View className="total-link">
-                <Text>Total:${total}</Text>
+            <View  style={carrito.length !== 0 ? { display:'flex', padding: 10, marginHorizontal: 30, marginTop: 30, backgroundColor: "#181818", shadowColor: "#88D317", justifyContent: 'center', alignItems: 'center', shadowOffset: { width: -5/10, height: -5/10 }, shadowOpacity: 10, elevation: 20, } : {display : 'none'}}>
+              <Text style={{color: "white", fontWeight: 'bold'}}>Resumen de compra</Text>
+              <View >
+                <Text style={{color: "white", fontWeight: 'bold', textAlign: 'center', marginTop: 10}}>Total:${total}</Text>
                 
-                <Button title="Iniciar Compra" className="button-compra"/>
+                <View color="white" style={styles.iniciarCompra}>
+                <Text style={{color: 'white'}}>Iniciar Compra</Text>
+                </View>
 
             {/*     <Paypal/> */}
               </View>
             </View>
           </View> 
+                </ScrollView>
           </ImageBackground>
       )
       
@@ -129,8 +129,93 @@ export default Cart;
 
 const styles = StyleSheet.create({
   contenedor: {
-    paddingHorizontal: 100,
-    height: "100vh",
+    height: "100%",
     width: "100%",
   },
+  logoLinkdiv: {
+    display: 'flex',
+    width: "100%",
+    alignItems: 'center'
+  },
+  logoLink: {
+    paddingTop: 50,
+    display: 'flex',
+    width: "100%",
+    borderBottomColor: 'grey',
+    borderBottomWidth: 1,
+    marginBottom: 40,
+    gap: 20,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    paddingBottom: 10,
+    flexDirection: 'row',
+    paddingHorizontal: 20
+  },
+  textEnviosGratis: {
+    color: "white",
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 18
+  },
+  vaciarCarrito: {
+    color: "white",
+    border: "none",
+    backgroundColor: "transparent"
+  },
+  boxes: {
+    overflow: 'visible',
+    marginTop: 30,
+    display: 'flex',
+    gap: 30,
+    justifyContent: 'center'
+  },
+  boxProductos: {
+    shadowColor: "#88D317",
+    shadowRadius: "30"
+  },
+  productos: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginBottom: 30,
+    padding: 10,
+    shadowColor: "#88D317",
+    shadowOffset: { width: -5/10, height: -5/10 },
+    shadowOpacity: 10,
+    elevation: 20,
+    backgroundColor: "#181818"
+  },
+  cantidad: {
+    display: 'flex', 
+    flexDirection: 'row',
+  },
+  imgText: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: "100%",
+    justifyContent: 'space-between'
+  },
+  precioCantidad: {
+    display: 'flex',
+    marginVertical: 20,
+    justifyContent:"space-between",
+    flexDirection: 'row',
+    width: "100%"
+  },
+  vaciar: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginLeft: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  iniciarCompra: {
+    backgroundColor: "#88D317",
+    borderColor: "#88D317",
+    borderRadius: 10,
+    padding: 10,
+    marginTop: 10
+  }
+
 })
