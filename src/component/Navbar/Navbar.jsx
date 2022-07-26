@@ -1,7 +1,7 @@
 import React, {useEffect,useState} from 'react'
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { View, Text, StyleSheet, Button, ScrollView } from 'react-native'
 import { IconButton } from "@react-native-material/core";
-import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Link as LinkRouter} from 'react-router-native'
 
 export default function Navbar(){
@@ -10,17 +10,22 @@ export default function Navbar(){
         <View style={styles.containerNavbar} >
             <LinkRouter to='/'> 
             <View style={styles.button}>
-            <IconButton icon={props => <Icon name="home" color={'#88D317'} size={45}  />} />
+            <Icon name="home" color={'#88D317'} size={45}  />
+            </View>
+            </LinkRouter>
+            <LinkRouter to='/products'>
+            <View style={styles.button}>
+            <Icon name="devices" color={'#88D317'} size={45}  />
             </View>
             </LinkRouter>
             <LinkRouter to='/cart'>
             <View style={styles.button}>
-            <IconButton icon={props => <Icon name="cart" color={'#88D317'} size={45}  />} />
+            <Icon name="shopping-cart" color={'#88D317'} size={45}  />
             </View>
             </LinkRouter>
             <LinkRouter to='/'>
             <View style={styles.button}>
-            <IconButton icon={props => <Icon name="account" color={'#88D317'} size={45}  />} />
+            <Icon name="person" color={'#88D317'} size={45}  />
             </View>
             </LinkRouter>
         </View>
@@ -32,9 +37,9 @@ export default function Navbar(){
 const styles=StyleSheet.create({
     containerNavbar:{
     width:'100%',
-    height:'8%',
+    height:'12%',
     backgroundColor:'#121212',
-
+    paddingTop: 50,
     display:'flex',
     flexDirection:'row',
     alignItems:'center',
@@ -43,8 +48,8 @@ const styles=StyleSheet.create({
     button:{
         margin: 5,
         color: 'white',
-        height: 40,
-        width: 40
+        height: 50,
+        width: 50
     }
 
 })

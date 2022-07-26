@@ -43,17 +43,17 @@ const addToCart = async (id) => {
     <ScrollView
     style={styles.card}
     >
-      <Text style={{fontSize:35,textAlign: 'center',color: 'white',fontWeight: 'bold',paddingTop:15,textTransform:'uppercase'}}>
+      <Text style={{fontSize:25,textAlign: 'center',color: 'white',fontWeight: 'bold',paddingTop:15,textTransform:'uppercase'}}>
        {product.name}
       </Text>
       <Image source={{uri:product.images}} style={styles.imgStore}/>
       <Text style={styles.titulo}>USD {product.price}</Text>
       <Text style={styles.direccion}>{product.description}</Text>
       <TouchableOpacity onPress={()=>addToCart(product._id)}>
-              <Text style={{fontSize:55,textAlign: 'center',color: 'white',fontWeight: 'bold',marginTop:5}}>🛒</Text>
+              <Text style={{fontSize:55,textAlign: 'center',color: 'white',fontWeight: 'bold',marginTop:20}}>🛒</Text>
       </TouchableOpacity>
       <Link  style={{backgroundColor:'grey',
-              padding:5,
+              padding:10,
               marginTop: "1%",
               width:"60%",
               alignSelf:"center",
@@ -87,7 +87,6 @@ const styles=StyleSheet.create({
         borderRadius:24,
         margin:0,
         marginBottom:10,
-
     },
 
     card:{
@@ -99,7 +98,9 @@ const styles=StyleSheet.create({
     },
     titulo:{
       color: "white",
-      fontSize: 30,
+      fontSize: 25,
+      marginBottom: 20,
+      marginTop: 20,
       textTransform:'uppercase',
       fontWeight: "bold",
       textAlign: "center",
@@ -107,7 +108,7 @@ const styles=StyleSheet.create({
     },
     direccion:{
       color: "white",
-      fontSize: 20,
+      fontSize: 15,
       textAlign:"justify",
       fontWeight: "bold",
       backgroundColor: "#354259",

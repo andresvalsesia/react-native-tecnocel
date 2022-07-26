@@ -2,6 +2,7 @@ import React, {useEffect,useState} from 'react'
 import {StyleSheet,View,Text,TouchableOpacity,FlatList,Image,Dimensions,SafeAreaView,Animated,TextInput,ImageBackground,ScrollView,Alert} from 'react-native';
 import productActions from '../../redux/actions/productActions';
 import {useDispatch,useSelector} from 'react-redux';
+import { Link } from 'react-router-native';
 
 
 const width =Dimensions.get("window").width;
@@ -124,7 +125,7 @@ let filter= products.filter(product=>product.name.toLowerCase().startsWith(searc
             >
      
                      
-                     <Image key={index} source={{uri:item.images}} style={styles.imgStore}/>
+                     <Image key={index} source={{uri:item.images}} resizeMode="cover" style={styles.imgStore}/>
                      <Text style={styles.titulo}>{item.name}</Text>
                      <Text style={styles.direccion}>USD {item.price}</Text>
                      <TouchableOpacity
@@ -199,8 +200,8 @@ const styles=StyleSheet.create({
     },
     card:{
          backgroundColor:'#354259',
-         marginTop:15,
          borderWidth:3,
+         marginBottom: 15,
 
     },
     titulo:{

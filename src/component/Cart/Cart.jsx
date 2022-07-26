@@ -6,7 +6,6 @@ import logo from '../../../assets/Tecnocel.png';
 import EmptyCart from "./EmptyCart";
 import { Button, Image, ImageBackground, ScrollView, StyleSheet, Text, View } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { withSafeAreaInsets } from "react-native-safe-area-context";
 
 
 const Cart = () => {
