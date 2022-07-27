@@ -5,6 +5,7 @@ import { Link } from "react-router-native";
 import logo from "../../../assets/Tecnocel.png";
 import EmptyCart from "./EmptyCart";
 import {
+  Alert,
   Button,
   Image,
   ImageBackground,
@@ -42,6 +43,12 @@ const Cart = () => {
   };
 
   console.log(carrito.length);
+
+  const buyAlert = () => {
+    dispatch(productActions.limpiarCarrito())
+    Alert.alert("Gracias por su compra")
+
+  }
 
   return (
     <ScrollView>
@@ -221,7 +228,7 @@ const Cart = () => {
                 Total:${total}
               </Text>
               <View color="white" style={styles.iniciarCompra}>
-                <Text style={{ color: "white" }}>Iniciar Compra</Text>
+                <Text onPress={buyAlert} style={{ color: "white" }}>Iniciar Compra</Text>
               </View>
               {/*     <Paypal/> */}
             </View>
